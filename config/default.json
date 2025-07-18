@@ -1,0 +1,25 @@
+{
+  "github": {
+    "owner": "",
+    "repo": "",
+    "token": ""
+  },
+  "ai": {
+    "defaultModel": "claude-3-5-sonnet-20241022",
+    "fallbackModel": "gpt-4o-mini",
+    "taskPreferences": {
+      "analyze-issue": "claude-3-5-sonnet-20241022",
+      "bug-fix": "gpt-4o",
+      "feature-implementation": "claude-3-5-sonnet-20241022",
+      "documentation-update": "gpt-4o-mini",
+      "security-scan": "gpt-4o",
+      "test-generation": "claude-3-haiku-20240307",
+      "refactoring": "claude-3-5-sonnet-20241022",
+      "triage-issues": "gpt-4o-mini"
+    }
+  },
+  "limits": {
+    "maxDailyCost": 10.00,
+    "maxTokensPerRequest": 8000
+  }
+}
