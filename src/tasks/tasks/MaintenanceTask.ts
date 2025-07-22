@@ -44,7 +44,7 @@ export class MaintenanceTask {
           if (files.length === 0) {
             return {
               success: false,
-              message: "No files specified for test generation",
+              message: "No files specified for test generation"
             };
           }
 
@@ -117,12 +117,12 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
             modelUsed: aiResult.model,
             tokensUsed: aiResult.tokensUsed,
             cost: aiResult.cost,
-            filesModified: testSuite.testFiles?.map((tf: any) => tf.path) || [],
+            filesModified: testSuite.testFiles?.map((tf: any) => tf.path) || []
           };
         } catch (error) {
           return {
             success: false,
-            message: `Test generation failed: ${error.message}`,
+            message: `Test generation failed: ${error.message}`
           };
         }
       },
@@ -167,13 +167,13 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
             data: {
               summary: results,
               criticalIssues,
-              totalVulnerabilities: this.countTotalVulnerabilities(results),
-            },
+              totalVulnerabilities: this.countTotalVulnerabilities(results)
+            }
           };
         } catch (error) {
           return {
             success: false,
-            message: `Security scan failed: ${error.message}`,
+            message: `Security scan failed: ${error.message}`
           };
         }
       },
@@ -265,12 +265,12 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
             data: updatePlan,
             modelUsed: aiResult.model,
             tokensUsed: aiResult.tokensUsed,
-            cost: aiResult.cost,
+            cost: aiResult.cost
           };
         } catch (error) {
           return {
             success: false,
-            message: `Dependency update failed: ${error.message}`,
+            message: `Dependency update failed: ${error.message}`
           };
         }
       },
@@ -303,13 +303,13 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
             data: {
               analysis,
               cleanupPlan,
-              potentialSavings: this.calculatePotentialSavings(analysis),
-            },
+              potentialSavings: this.calculatePotentialSavings(analysis)
+            }
           };
         } catch (error) {
           return {
             success: false,
-            message: `Cleanup analysis failed: ${error.message}`,
+            message: `Cleanup analysis failed: ${error.message}`
           };
         }
       },

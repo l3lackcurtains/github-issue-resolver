@@ -117,12 +117,12 @@ Format as markdown with proper sections and visual elements.
           return {
             success: true,
             message: "Metrics collected successfully",
-            data: metrics,
+            data: metrics
           };
         } catch (error) {
           return {
             success: false,
-            message: `Metrics collection failed: ${error.message}`,
+            message: `Metrics collection failed: ${error.message}`
           };
         }
       },
@@ -143,12 +143,12 @@ Format as markdown with proper sections and visual elements.
           return {
             success: true,
             message: "Progress tracking completed",
-            data: progress,
+            data: progress
           };
         } catch (error) {
           return {
             success: false,
-            message: `Progress tracking failed: ${error.message}`,
+            message: `Progress tracking failed: ${error.message}`
           };
         }
       },
@@ -181,13 +181,13 @@ Format as markdown with proper sections and visual elements.
             message: `Health check completed. Score: ${healthScore}/10`,
             data: {
               healthScore,
-              ...healthData,
-            },
+              ...healthData
+            }
           };
         } catch (error) {
           return {
             success: false,
-            message: `Health check failed: ${error.message}`,
+            message: `Health check failed: ${error.message}`
           };
         }
       },

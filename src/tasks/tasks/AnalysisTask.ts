@@ -161,6 +161,8 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
             success: true,
             message: `Triaged ${triaged.length} issues`,
             data: { issues: triaged, totalCost },
+            modelUsed: modelName,
+            tokensUsed: triaged.length * 500,
             cost: totalCost
           };
         } catch (error) {
@@ -234,6 +236,7 @@ Please review and close if duplicate.`;
             message: `Found ${duplicates.length} potential duplicate groups`,
             data: duplicates,
             modelUsed: aiResult.model,
+            tokensUsed: aiResult.tokensUsed,
             cost: aiResult.cost
           };
         } catch (error) {
