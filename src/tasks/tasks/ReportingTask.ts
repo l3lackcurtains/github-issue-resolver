@@ -118,6 +118,9 @@ Format as markdown with proper sections and visual elements.
             success: true,
             message: "Metrics collected successfully",
             data: metrics,
+            modelUsed: "system",
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
@@ -144,6 +147,9 @@ Format as markdown with proper sections and visual elements.
             success: true,
             message: "Progress tracking completed",
             data: progress,
+            modelUsed: "system",
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
@@ -183,6 +189,9 @@ Format as markdown with proper sections and visual elements.
               healthScore,
               ...healthData,
             },
+            modelUsed: "system",
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
