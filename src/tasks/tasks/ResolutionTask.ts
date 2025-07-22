@@ -32,7 +32,13 @@ export class ResolutionTask {
       dependencies: ["analyze-issue"],
       execute: async (context: TaskContext): Promise<TaskResult> => {
         if (!context.issueNumber) {
-          return { success: false, message: "Issue number required" };
+          return { 
+            success: false, 
+            message: "Issue number required",
+            modelUsed: context.additionalParams?.selectedModel || 'gpt-4o',
+            tokensUsed: 0,
+            cost: 0
+          };
         }
 
         try {
@@ -101,7 +107,10 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
           logger.error(`Bug fix generation failed for issue ${context.issueNumber}:`, error);
           return {
             success: false,
-            message: `Bug fix generation failed: ${error.message}`
+            message: `Bug fix generation failed: ${error.message}`,
+            modelUsed: context.additionalParams?.selectedModel || 'gpt-4o',
+            tokensUsed: 0,
+            cost: 0
           };
         }
       }
@@ -118,7 +127,13 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
       dependencies: ["analyze-issue"],
       execute: async (context: TaskContext): Promise<TaskResult> => {
         if (!context.issueNumber) {
-          return { success: false, message: "Issue number required" };
+          return { 
+            success: false, 
+            message: "Issue number required",
+            modelUsed: context.additionalParams?.selectedModel || 'claude-3-5-sonnet-20241022',
+            tokensUsed: 0,
+            cost: 0
+          };
         }
 
         try {
@@ -207,7 +222,10 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
           logger.error(`Feature implementation planning failed for issue ${context.issueNumber}:`, error);
           return {
             success: false,
-            message: `Feature implementation planning failed: ${error.message}`
+            message: `Feature implementation planning failed: ${error.message}`,
+            modelUsed: context.additionalParams?.selectedModel || 'claude-3-5-sonnet-20241022',
+            tokensUsed: 0,
+            cost: 0
           };
         }
       }
@@ -281,7 +299,10 @@ Important: Ensure all strings are properly escaped for JSON (escape quotes, newl
         } catch (error) {
           return {
             success: false,
-            message: `Documentation update failed: ${error.message}`
+            message: `Documentation update failed: ${error.message}`,
+            modelUsed: context.additionalParams?.selectedModel || 'gpt-4o-mini',
+            tokensUsed: 0,
+            cost: 0
           };
         }
       }
@@ -301,7 +322,13 @@ Important: Ensure all strings are properly escaped for JSON (escape quotes, newl
           const modelName = context.additionalParams?.selectedModel || 'claude-3-5-sonnet-20241022';
 
           if (targetFiles.length === 0) {
-            return { success: false, message: "No files specified for refactoring" };
+            return { 
+              success: false, 
+              message: "No files specified for refactoring",
+              modelUsed: context.additionalParams?.selectedModel || 'claude-3-5-sonnet-20241022',
+              tokensUsed: 0,
+              cost: 0
+            };
           }
 
           const codeFiles = await this.readFiles(context.workingDirectory, targetFiles);
@@ -347,7 +374,10 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
         } catch (error) {
           return {
             success: false,
-            message: `Refactoring failed: ${error.message}`
+            message: `Refactoring failed: ${error.message}`,
+            modelUsed: context.additionalParams?.selectedModel || 'claude-3-5-sonnet-20241022',
+            tokensUsed: 0,
+            cost: 0
           };
         }
       }

@@ -118,11 +118,17 @@ Format as markdown with proper sections and visual elements.
             success: true,
             message: "Metrics collected successfully",
             data: metrics,
+            modelUsed: 'data-collector',
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
             success: false,
             message: `Metrics collection failed: ${error.message}`,
+            modelUsed: 'data-collector',
+            tokensUsed: 0,
+            cost: 0
           };
         }
       },
@@ -144,11 +150,17 @@ Format as markdown with proper sections and visual elements.
             success: true,
             message: "Progress tracking completed",
             data: progress,
+            modelUsed: 'progress-tracker',
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
             success: false,
             message: `Progress tracking failed: ${error.message}`,
+            modelUsed: 'progress-tracker',
+            tokensUsed: 0,
+            cost: 0
           };
         }
       },
@@ -183,11 +195,17 @@ Format as markdown with proper sections and visual elements.
               healthScore,
               ...healthData,
             },
+            modelUsed: 'health-analyzer',
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
             success: false,
             message: `Health check failed: ${error.message}`,
+            modelUsed: 'health-analyzer',
+            tokensUsed: 0,
+            cost: 0
           };
         }
       },
