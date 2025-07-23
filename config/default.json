@@ -5,17 +5,17 @@
     "token": ""
   },
   "ai": {
-    "defaultModel": "claude-3-5-sonnet-20241022",
-    "fallbackModel": "gpt-4o-mini",
+    "defaultModel": "claude-code",
+    "fallbackModel": "claude-code",
     "taskPreferences": {
-      "analyze-issue": "claude-3-5-sonnet-20241022",
-      "bug-fix": "gpt-4o",
-      "feature-implementation": "claude-3-5-sonnet-20241022",
-      "documentation-update": "gpt-4o-mini",
-      "security-scan": "gpt-4o",
-      "test-generation": "claude-3-haiku-20240307",
-      "refactoring": "claude-3-5-sonnet-20241022",
-      "triage-issues": "gpt-4o-mini"
+      "analyze-issue": "claude-code",
+      "bug-fix": "claude-code",
+      "feature-implementation": "claude-code",
+      "documentation-update": "claude-code",
+      "security-scan": "claude-code",
+      "test-generation": "claude-code",
+      "refactoring": "claude-code",
+      "triage-issues": "claude-code"
     }
   },
   "limits": {
