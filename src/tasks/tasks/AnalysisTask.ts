@@ -96,7 +96,10 @@ Consider:
           logger.error(`Failed to analyze issue ${context.issueNumber}:`, error);
           return {
             success: false,
-            message: `Failed to analyze issue: ${error.message}`
+            message: `Failed to analyze issue: ${error.message}`,
+            modelUsed: undefined,
+            tokensUsed: 0,
+            cost: 0
           };
         }
       }
@@ -161,12 +164,17 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
             success: true,
             message: `Triaged ${triaged.length} issues`,
             data: { issues: triaged, totalCost },
+            modelUsed: modelName,
+            tokensUsed: 0, // Aggregated from multiple calls
             cost: totalCost
           };
         } catch (error) {
           return {
             success: false,
-            message: `Triage failed: ${error.message}`
+            message: `Triage failed: ${error.message}`,
+            modelUsed: undefined,
+            tokensUsed: 0,
+            cost: 0
           };
         }
       }
@@ -234,12 +242,16 @@ Please review and close if duplicate.`;
             message: `Found ${duplicates.length} potential duplicate groups`,
             data: duplicates,
             modelUsed: aiResult.model,
+            tokensUsed: aiResult.tokensUsed,
             cost: aiResult.cost
           };
         } catch (error) {
           return {
             success: false,
-            message: `Duplicate detection failed: ${error.message}`
+            message: `Duplicate detection failed: ${error.message}`,
+            modelUsed: undefined,
+            tokensUsed: 0,
+            cost: 0
           };
         }
       }
@@ -263,7 +275,10 @@ Please review and close if duplicate.`;
             quality_score: 8.5,
             issues_found: 3,
             suggestions: ["Add more tests", "Improve error handling", "Update documentation"]
-          }
+          },
+          modelUsed: undefined,
+          tokensUsed: 0,
+          cost: 0
         };
       }
     };

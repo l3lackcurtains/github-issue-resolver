@@ -45,6 +45,9 @@ export class MaintenanceTask {
             return {
               success: false,
               message: "No files specified for test generation",
+              modelUsed: undefined,
+              tokensUsed: 0,
+              cost: 0
             };
           }
 
@@ -123,6 +126,9 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
           return {
             success: false,
             message: `Test generation failed: ${error.message}`,
+            modelUsed: undefined,
+            tokensUsed: 0,
+            cost: 0
           };
         }
       },
@@ -169,11 +175,17 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
               criticalIssues,
               totalVulnerabilities: this.countTotalVulnerabilities(results),
             },
+            modelUsed: undefined,
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
             success: false,
             message: `Security scan failed: ${error.message}`,
+            modelUsed: undefined,
+            tokensUsed: 0,
+            cost: 0
           };
         }
       },
@@ -271,6 +283,9 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
           return {
             success: false,
             message: `Dependency update failed: ${error.message}`,
+            modelUsed: undefined,
+            tokensUsed: 0,
+            cost: 0
           };
         }
       },
@@ -305,11 +320,17 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
               cleanupPlan,
               potentialSavings: this.calculatePotentialSavings(analysis),
             },
+            modelUsed: undefined,
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
             success: false,
             message: `Cleanup analysis failed: ${error.message}`,
+            modelUsed: undefined,
+            tokensUsed: 0,
+            cost: 0
           };
         }
       },
