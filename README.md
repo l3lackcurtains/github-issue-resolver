@@ -36,31 +36,16 @@ ANTHROPIC_API_KEY=your_anthropic_key
 ### 3. Usage
 
 ```bash
-# Commands that don't require repository:
-bun run cli models              # List available AI models
-bun run cli tasks               # List available tasks
-bun run cli usage               # View usage statistics
+# List available models and tasks
+bun run cli models
+bun run cli tasks
 
-# Commands that require repository (via --repo flag):
+# Execute tasks
 bun run cli --repo owner/repo execute <task>
-bun run cli --repo owner/repo interactive
-bun run cli --repo owner/repo switch <model>
-bun run cli --repo owner/repo suggest <input>
-
-# Analyze an issue (repository from issue URL)
 bun run cli execute analyze-issue --issue https://github.com/owner/repo/issues/123
 
-# Analyze an issue (explicit repository)
-bun run cli --repo owner/repo execute analyze-issue --issue 123
-
-# Also supports shorter URL formats
-bun run cli execute analyze-issue --issue owner/repo#123
-
-# Interactive mode with repository
-bun run cli --repo myorg/myrepo interactive
-
-# Generate project report
-bun run cli --repo owner/repo execute generate-report
+# Interactive mode
+bun run cli --repo owner/repo interactive
 ```
 
 ## Available Tasks
@@ -91,57 +76,7 @@ bun run cli --repo owner/repo execute generate-report
 
 ## Model Selection
 
-The system automatically selects optimal models for each task:
-
-- **Code Analysis**: Claude-3.5-Sonnet (superior reasoning)
-- **Bug Fixes**: GPT-4 (excellent debugging)
-- **Documentation**: GPT-4-mini (cost-effective)
-- **Security**: GPT-4 (thorough analysis)
-- **Quick Tasks**: Local models (no API costs)
-
-## CLI Commands
-
-```bash
-# Repository can be specified in multiple ways:
-# 1. Via --repo flag: --repo owner/repo or --repo https://github.com/owner/repo
-# 2. Via issue URL: --issue https://github.com/owner/repo/issues/123
-# 3. Via environment variables (GITHUB_OWNER and GITHUB_REPO)
-# 4. Via config file
-
-# Commands that don't require repository:
-github-resolver models            # List available models
-github-resolver tasks             # List available tasks  
-github-resolver usage             # View usage statistics
-
-# Commands that require repository:
-github-resolver --repo owner/repo switch <model>  # Switch primary model
-github-resolver --repo owner/repo execute <task> [options]  # Execute specific task
-github-resolver --repo owner/repo suggest <input>  # Get task suggestions
-github-resolver --repo owner/repo interactive  # Start interactive session
-```
-
-### Issue Reference Formats
-
-The CLI supports multiple formats for referencing GitHub issues:
-
-```bash
-# Using issue number (requires --repo flag)
-bun run cli --repo owner/repo execute analyze-issue --issue 123
-
-# Using full GitHub URL (repository inferred from URL)
-bun run cli execute analyze-issue --issue https://github.com/owner/repo/issues/123
-
-# Using short GitHub URL
-bun run cli execute analyze-issue --issue github.com/owner/repo/issues/123
-
-# Using repository path format
-bun run cli execute analyze-issue --issue owner/repo/issues/123
-
-# Using hash format
-bun run cli execute analyze-issue --issue owner/repo#123
-```
-
-When using issue URLs, the repository context is automatically extracted from the URL, so you don't need to specify --repo.
+The system automatically selects optimal models for each task based on complexity and requirements.
 
 ## Development
 
