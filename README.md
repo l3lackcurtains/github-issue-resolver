@@ -15,52 +15,22 @@ A powerful multi-model AI system for automatically analyzing and resolving GitHu
 
 ## Quick Start
 
-### 1. Installation
-
 ```bash
+# Installation
 git clone <repository-url>
 cd github-issue-resolver
 bun run setup
-```
 
-### 2. Configuration
-
-Edit `.env` file with your API keys:
-
-```env
+# Configuration - Edit .env with your API keys
 GITHUB_TOKEN=your_github_token
 OPENAI_API_KEY=your_openai_key
 ANTHROPIC_API_KEY=your_anthropic_key
-```
 
-### 3. Usage
-
-```bash
-# Commands that don't require repository:
-bun run cli models              # List available AI models
-bun run cli tasks               # List available tasks
-bun run cli usage               # View usage statistics
-
-# Commands that require repository (via --repo flag):
-bun run cli --repo owner/repo execute <task>
-bun run cli --repo owner/repo interactive
-bun run cli --repo owner/repo switch <model>
-bun run cli --repo owner/repo suggest <input>
-
-# Analyze an issue (repository from issue URL)
-bun run cli execute analyze-issue --issue https://github.com/owner/repo/issues/123
-
-# Analyze an issue (explicit repository)
-bun run cli --repo owner/repo execute analyze-issue --issue 123
-
-# Also supports shorter URL formats
-bun run cli execute analyze-issue --issue owner/repo#123
-
-# Interactive mode with repository
-bun run cli --repo myorg/myrepo interactive
-
-# Generate project report
-bun run cli --repo owner/repo execute generate-report
+# Usage examples
+bun run cli models                                    # List models
+bun run cli --repo owner/repo execute <task>         # Execute task
+bun run cli execute analyze-issue --issue owner/repo#123  # Analyze issue
+bun run cli --repo owner/repo interactive            # Interactive mode
 ```
 
 ## Available Tasks
@@ -99,66 +69,18 @@ The system automatically selects optimal models for each task:
 - **Security**: GPT-4 (thorough analysis)
 - **Quick Tasks**: Local models (no API costs)
 
-## CLI Commands
+## Repository & Issue Formats
 
-```bash
-# Repository can be specified in multiple ways:
-# 1. Via --repo flag: --repo owner/repo or --repo https://github.com/owner/repo
-# 2. Via issue URL: --issue https://github.com/owner/repo/issues/123
-# 3. Via environment variables (GITHUB_OWNER and GITHUB_REPO)
-# 4. Via config file
-
-# Commands that don't require repository:
-github-resolver models            # List available models
-github-resolver tasks             # List available tasks  
-github-resolver usage             # View usage statistics
-
-# Commands that require repository:
-github-resolver --repo owner/repo switch <model>  # Switch primary model
-github-resolver --repo owner/repo execute <task> [options]  # Execute specific task
-github-resolver --repo owner/repo suggest <input>  # Get task suggestions
-github-resolver --repo owner/repo interactive  # Start interactive session
-```
-
-### Issue Reference Formats
-
-The CLI supports multiple formats for referencing GitHub issues:
-
-```bash
-# Using issue number (requires --repo flag)
-bun run cli --repo owner/repo execute analyze-issue --issue 123
-
-# Using full GitHub URL (repository inferred from URL)
-bun run cli execute analyze-issue --issue https://github.com/owner/repo/issues/123
-
-# Using short GitHub URL
-bun run cli execute analyze-issue --issue github.com/owner/repo/issues/123
-
-# Using repository path format
-bun run cli execute analyze-issue --issue owner/repo/issues/123
-
-# Using hash format
-bun run cli execute analyze-issue --issue owner/repo#123
-```
-
-When using issue URLs, the repository context is automatically extracted from the URL, so you don't need to specify --repo.
+Repository can be specified via `--repo owner/repo`, issue URLs, or environment variables. 
+Issues support multiple formats: `owner/repo#123`, `https://github.com/owner/repo/issues/123`, or just `123` with `--repo`.
 
 ## Development
 
 ```bash
-# Development mode
-bun run dev
-
-# Run tests
-bun test
-bun run test:watch
-
-# Build project
-bun run build
-
-# Linting
-bun run lint
-bun run lint:fix
+bun run dev        # Development mode
+bun test           # Run tests
+bun run build      # Build project
+bun run lint:fix   # Lint and fix
 ```
 
 ## Architecture
@@ -183,11 +105,7 @@ Edit `config/default.json` to customize:
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
+Fork → Create branch → Make changes → Add tests → Submit PR
 
 ## License
 
