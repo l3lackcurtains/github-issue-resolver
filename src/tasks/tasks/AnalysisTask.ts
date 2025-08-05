@@ -160,7 +160,9 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
           return {
             success: true,
             message: `Triaged ${triaged.length} issues`,
-            data: { issues: triaged, totalCost },
+            data: { issues: triaged },
+            modelUsed: modelName,
+            tokensUsed: triaged.length * 100, // Rough estimate
             cost: totalCost
           };
         } catch (error) {
@@ -234,6 +236,7 @@ Please review and close if duplicate.`;
             message: `Found ${duplicates.length} potential duplicate groups`,
             data: duplicates,
             modelUsed: aiResult.model,
+            tokensUsed: aiResult.tokensUsed,
             cost: aiResult.cost
           };
         } catch (error) {
@@ -263,7 +266,10 @@ Please review and close if duplicate.`;
             quality_score: 8.5,
             issues_found: 3,
             suggestions: ["Add more tests", "Improve error handling", "Update documentation"]
-          }
+          },
+          modelUsed: "static-analysis",
+          tokensUsed: 0,
+          cost: 0
         };
       }
     };

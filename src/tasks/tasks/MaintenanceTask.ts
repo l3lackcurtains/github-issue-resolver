@@ -169,6 +169,9 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
               criticalIssues,
               totalVulnerabilities: this.countTotalVulnerabilities(results),
             },
+            modelUsed: "security-scanner",
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
@@ -305,6 +308,9 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
               cleanupPlan,
               potentialSavings: this.calculatePotentialSavings(analysis),
             },
+            modelUsed: "static-analyzer",
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
