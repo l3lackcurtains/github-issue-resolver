@@ -97,6 +97,9 @@ Format as markdown with proper sections and visual elements.
           return {
             success: false,
             message: `Report generation failed: ${error.message}`,
+            modelUsed: context.additionalParams?.selectedModel || "gpt-4o-mini",
+            tokensUsed: 0,
+            cost: 0
           };
         }
       },
@@ -118,11 +121,17 @@ Format as markdown with proper sections and visual elements.
             success: true,
             message: "Metrics collected successfully",
             data: metrics,
+            modelUsed: "static-analyzer",
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
             success: false,
             message: `Metrics collection failed: ${error.message}`,
+            modelUsed: "static-analyzer",
+            tokensUsed: 0,
+            cost: 0
           };
         }
       },
@@ -144,11 +153,17 @@ Format as markdown with proper sections and visual elements.
             success: true,
             message: "Progress tracking completed",
             data: progress,
+            modelUsed: "static-analyzer",
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
             success: false,
             message: `Progress tracking failed: ${error.message}`,
+            modelUsed: "static-analyzer",
+            tokensUsed: 0,
+            cost: 0
           };
         }
       },
@@ -183,11 +198,17 @@ Format as markdown with proper sections and visual elements.
               healthScore,
               ...healthData,
             },
+            modelUsed: "static-analyzer",
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
             success: false,
             message: `Health check failed: ${error.message}`,
+            modelUsed: "static-analyzer",
+            tokensUsed: 0,
+            cost: 0
           };
         }
       },

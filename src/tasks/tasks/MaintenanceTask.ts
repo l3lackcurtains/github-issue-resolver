@@ -123,6 +123,9 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
           return {
             success: false,
             message: `Test generation failed: ${error.message}`,
+            modelUsed: context.additionalParams?.selectedModel || "claude-3-haiku-20240307",
+            tokensUsed: 0,
+            cost: 0
           };
         }
       },
@@ -169,11 +172,17 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
               criticalIssues,
               totalVulnerabilities: this.countTotalVulnerabilities(results),
             },
+            modelUsed: "security-scanner",
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
             success: false,
             message: `Security scan failed: ${error.message}`,
+            modelUsed: "security-scanner",
+            tokensUsed: 0,
+            cost: 0
           };
         }
       },
@@ -268,9 +277,13 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
             cost: aiResult.cost,
           };
         } catch (error) {
+          const modelName = context.additionalParams?.selectedModel || "gpt-4o-mini";
           return {
             success: false,
             message: `Dependency update failed: ${error.message}`,
+            modelUsed: modelName,
+            tokensUsed: 0,
+            cost: 0
           };
         }
       },
@@ -305,11 +318,17 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
               cleanupPlan,
               potentialSavings: this.calculatePotentialSavings(analysis),
             },
+            modelUsed: "static-analyzer",
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
             success: false,
             message: `Cleanup analysis failed: ${error.message}`,
+            modelUsed: "static-analyzer",
+            tokensUsed: 0,
+            cost: 0
           };
         }
       },
