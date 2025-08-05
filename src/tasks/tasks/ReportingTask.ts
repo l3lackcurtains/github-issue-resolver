@@ -88,15 +88,14 @@ Format as markdown with proper sections and visual elements.
               reportData,
               healthScore: this.calculateHealthScore(reportData),
             },
-            filesModified: [reportPath],
             modelUsed: aiResult.model,
             tokensUsed: aiResult.tokensUsed,
-            cost: aiResult.cost,
+            cost: aiResult.cost
           };
         } catch (error) {
           return {
             success: false,
-            message: `Report generation failed: ${error.message}`,
+            message: `Report generation failed: ${error.message}`
           };
         }
       },
@@ -118,11 +117,14 @@ Format as markdown with proper sections and visual elements.
             success: true,
             message: "Metrics collected successfully",
             data: metrics,
+            modelUsed: "metrics-collector",
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
             success: false,
-            message: `Metrics collection failed: ${error.message}`,
+            message: `Metrics collection failed: ${error.message}`
           };
         }
       },
@@ -144,11 +146,14 @@ Format as markdown with proper sections and visual elements.
             success: true,
             message: "Progress tracking completed",
             data: progress,
+            modelUsed: "progress-tracker",
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
             success: false,
-            message: `Progress tracking failed: ${error.message}`,
+            message: `Progress tracking failed: ${error.message}`
           };
         }
       },
@@ -183,11 +188,14 @@ Format as markdown with proper sections and visual elements.
               healthScore,
               ...healthData,
             },
+            modelUsed: "health-checker",
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
             success: false,
-            message: `Health check failed: ${error.message}`,
+            message: `Health check failed: ${error.message}`
           };
         }
       },

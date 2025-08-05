@@ -116,13 +116,12 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
             data: testSuite,
             modelUsed: aiResult.model,
             tokensUsed: aiResult.tokensUsed,
-            cost: aiResult.cost,
-            filesModified: testSuite.testFiles?.map((tf: any) => tf.path) || [],
+            cost: aiResult.cost
           };
         } catch (error) {
           return {
             success: false,
-            message: `Test generation failed: ${error.message}`,
+            message: `Test generation failed: ${error.message}`
           };
         }
       },
@@ -169,11 +168,14 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
               criticalIssues,
               totalVulnerabilities: this.countTotalVulnerabilities(results),
             },
+            modelUsed: "security-scanner",
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
             success: false,
-            message: `Security scan failed: ${error.message}`,
+            message: `Security scan failed: ${error.message}`
           };
         }
       },
@@ -270,7 +272,7 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
         } catch (error) {
           return {
             success: false,
-            message: `Dependency update failed: ${error.message}`,
+            message: `Dependency update failed: ${error.message}`
           };
         }
       },
@@ -305,11 +307,14 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
               cleanupPlan,
               potentialSavings: this.calculatePotentialSavings(analysis),
             },
+            modelUsed: "cleanup-analyzer",
+            tokensUsed: 0,
+            cost: 0
           };
         } catch (error) {
           return {
             success: false,
-            message: `Cleanup analysis failed: ${error.message}`,
+            message: `Cleanup analysis failed: ${error.message}`
           };
         }
       },
