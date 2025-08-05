@@ -32,7 +32,14 @@ export class ResolutionTask {
       dependencies: ["analyze-issue"],
       execute: async (context: TaskContext): Promise<TaskResult> => {
         if (!context.issueNumber) {
-          return { success: false, message: "Issue number required" };
+          return { 
+            success: false, 
+            message: "Issue number required",
+            data: null,
+            modelUsed: "none",
+            tokensUsed: 0,
+            cost: 0
+          };
         }
 
         try {
@@ -118,7 +125,14 @@ Return ONLY valid JSON (no markdown, no code blocks, no extra text) in this exac
       dependencies: ["analyze-issue"],
       execute: async (context: TaskContext): Promise<TaskResult> => {
         if (!context.issueNumber) {
-          return { success: false, message: "Issue number required" };
+          return { 
+            success: false, 
+            message: "Issue number required",
+            data: null,
+            modelUsed: "none",
+            tokensUsed: 0,
+            cost: 0
+          };
         }
 
         try {
@@ -301,7 +315,14 @@ Important: Ensure all strings are properly escaped for JSON (escape quotes, newl
           const modelName = context.additionalParams?.selectedModel || 'claude-3-5-sonnet-20241022';
 
           if (targetFiles.length === 0) {
-            return { success: false, message: "No files specified for refactoring" };
+            return { 
+              success: false, 
+              message: "No files specified for refactoring",
+              data: null,
+              modelUsed: modelName,
+              tokensUsed: 0,
+              cost: 0
+            };
           }
 
           const codeFiles = await this.readFiles(context.workingDirectory, targetFiles);
